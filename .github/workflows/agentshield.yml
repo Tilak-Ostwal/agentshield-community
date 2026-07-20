@@ -31,7 +31,7 @@ jobs:
         run: pnpm test
 
       - name: AgentShield CI security gate
-        run: pnpm cli -- bench --ci --sarif agentshield.sarif.json --force
+        run: pnpm cli bench --ci --sarif agentshield.sarif.json --force
 
       # Optional artifact upload for SARIF inspection. This does not call GitHub code scanning APIs.
       # - name: Upload AgentShield SARIF artifact
