@@ -6,9 +6,6 @@ import { describe, expect, it } from "vitest";
 
 import { DEMO_MESSAGE, runCli, runCliAsync } from "./index.js";
 
-interface RedteamGeneratedAll {
-  scenarios: unknown[];
-}
 
 interface PolicyAuditCliJson {
   summary: {
