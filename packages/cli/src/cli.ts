@@ -174,8 +174,7 @@ export function help(): string {
     "  agentshield workspace doctor examples/workspace/agentshield.workspace.json --format json",
     "  agentshield security-fuzz",
     "  agentshield security-fuzz --format json",
-    "  agentshield security-fuzz --format markdown",
-    "  agentshield security-review validate pack.json"
+    "  agentshield security-fuzz --format markdown"
   ].join("\n");
 }
 
