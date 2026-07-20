@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "packId": "enterprise-sensitive-data",
+  "name": "Enterprise Sensitive Data Protection",
+  "description": "Deny credential and sensitive data exfiltration, require review for risky exports, and require sandbox/execution constraints for risky side effects.",
+  "policyVersion": 2,
+  "safetyLevel": "enterprise",
+  "compatibleWorkspaceProfiles": ["strict", "enterprise"],
+  "tags": ["data-protection", "enterprise", "exfiltration"],
+  "rules": [
+    { "id": "deny-shell-exec", "description": "Deny shell execution.", "effect": "deny", "priority": 1000, "match": { "capability": "shell.exec" } },
+    { "id": "deny-code-execution", "description": "Deny direct code execution.", "effect": "deny", "priority": 990, "match": { "capability": "code_execution" } },
+    { "id": "deny-package-install", "description": "Deny package installation.", "effect": "deny", "priority": 950, "match": { "capability": "package.install" } },
+    { "id": "deny-filesystem-delete", "description": "Deny filesystem deletes.", "effect": "deny", "priority": 925, "match": { "capability": "filesystem.delete" } },
+    {
+      "id": "deny-sensitive-network-flow",
+      "description": "Deny sensitive data network flows.",
+      "effect": "deny",
+      "priority": 930,
+      "match": {
+        "capabilitiesAny": ["network.write", "network.exfiltration_risk", "external_side_effect"],
+        "taintAny": ["secret", "credential", "token", "api_key", "password", "private_user_data", "pii_possible", "env_secret", "ssh_key"]
+      }
+    },
+    { "id": "deny-critical-attack-graph", "description": "Deny critical attack graph findings.", "effect": "deny", "priority": 850, "match": { "riskSeverityAny": ["critical"] } },
+    { "id": "deny-blocked-registry-tool", "description": "Deny blocked registry tools by risk severity.", "effect": "deny", "priority": 900, "match": { "riskSeverityAny": ["critical"] } },
+    {
+      "id": "review-data-export",
+      "description": "Review data exports.",
+      "effect": "require_human_review",
+      "priority": 730,
+      "match": { "capability": "network.write" },
+      "requireApproval": { "reason": "confirm destination, data class, and authorization" }
+    },
+    {
+      "id": "review-external-side-effect",
+      "description": "Review external side effects with execution constraints.",
+      "effect": "require_human_review",
+      "priority": 720,
+      "match": { "capability": "external_side_effect" },
+      "requireApproval": { "reason": "confirm execution constraints and audit trail" }
+    },
+    {
+      "id": "review-sandboxed-write",
+      "description": "Review write actions and require sandbox support.",
+      "effect": "require_human_review",
+      "priority": 710,
+      "match": { "capability": "filesystem.write" },
+      "requireApproval": { "reason": "confirm sandbox profile and write scope" }
+    },
+    {
+      "id": "review-database-write",
+      "description": "Review database writes.",
+      "effect": "require_human_review",
+      "priority": 700,
+      "match": { "capability": "database.write" },
+      "requireApproval": { "reason": "confirm data mutation and audit trail" }
+    },
+    {
+      "id": "allow-reviewed-project-read",
+      "description": "Allow bounded project reads.",
+      "effect": "allow",
+      "priority": 100,
+      "match": {
+        "capability": "filesystem.read",
+        "resource": {
+          "type": "filesystem",
+          "allow": ["/mock/project/**"],
+          "deny": ["/mock/project/.env", "/mock/project/secrets/**"]
+        }
+      }
+    }
+  ],
+  "requiredChecks": {
+    "policyAudit": true,
+    "policyTest": true,
+    "adapterConformance": false,
+    "releaseCheck": true
+  },
+  "warnings": []
+}

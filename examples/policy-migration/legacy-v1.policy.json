@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "defaultDecision": "deny",
+  "rules": [
+    {
+      "id": "legacy-rule-1",
+      "match": {
+        "actionType": "tool_call",
+        "toolName": "fs.readFile"
+      },
+      "decision": "allow"
+    },
+    {
+      "id": "legacy-rule-2",
+      "match": {
+        "actionType": "tool_call"
+      },
+      "decision": "require_human_review"
+    }
+  ]
+}

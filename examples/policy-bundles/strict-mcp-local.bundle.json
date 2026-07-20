@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "bundleId": "strict-mcp-local-bundle",
+  "name": "Strict MCP Local Policy Bundle",
+  "createdAt": "2026-06-29T00:00:00.000Z",
+  "policy": {
+    "version": 2,
+    "name": "strict-mcp-local",
+    "mode": "strict",
+    "defaultDecision": "deny",
+    "rules": []
+  },
+  "provenance": {
+    "source": "policy-pack",
+    "sourceId": "strict-mcp-local",
+    "workspaceProfile": "strict",
+    "generatedBy": "agentshield",
+    "generatorVersion": "0.0.0",
+    "policyHash": "9b182578391ee007bce0b932bd7150cf2109f469ea66b1ca330bd0995539efb5",
+    "notes": []
+  },
+  "attestation": {
+    "algorithm": "HMAC-SHA256-TEST-ONLY",
+    "keyId": "local-test-key",
+    "signature": "fa9c384272d47034e4e85f22f1737a4f66395bd459651f5b1cac0ef49e972f17"
+  }
+}

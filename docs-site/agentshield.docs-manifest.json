@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "siteId": "agentshield-veritas-docs",
+  "name": "AgentShield Veritas Documentation",
+  "root": "docs-site",
+  "navigationPath": "docs-site/navigation.json",
+  "pages": [
+    {
+      "pageId": "index",
+      "title": "Home",
+      "path": "docs-site/pages/index.md",
+      "required": true
+    },
+    {
+      "pageId": "getting-started",
+      "title": "Getting Started",
+      "path": "docs-site/pages/getting-started.md",
+      "audience": ["developer", "security-engineer"],
+      "featuresCovered": ["workspace", "policy-pack", "release-check"],
+      "required": true
+    },
+    {
+      "pageId": "quick-evaluation",
+      "title": "Quick Evaluation",
+      "path": "docs-site/pages/quick-evaluation.md",
+      "required": true
+    },
+    {
+      "pageId": "architecture-overview",
+      "title": "Architecture Overview",
+      "path": "docs-site/pages/architecture-overview.md"
+    },
+    {
+      "pageId": "security-model",
+      "title": "Security Model",
+      "path": "docs-site/pages/security-model.md"
+    },
+    {
+      "pageId": "runtime-enforcement",
+      "title": "Runtime Enforcement",
+      "path": "docs-site/pages/runtime-enforcement.md",
+      "featuresCovered": ["core-runtime", "sensitive-data-detection", "sandbox"]
+    },
+    {
+      "pageId": "policy-system",
+      "title": "Policy System",
+      "path": "docs-site/pages/policy-system.md",
+      "featuresCovered": ["policy-v1-v2", "policy-migration"]
+    },
+    {
+      "pageId": "policy-packs",
+      "title": "Policy Packs",
+      "path": "docs-site/pages/policy-packs.md",
+      "featuresCovered": ["policy-pack", "policy-marketplace"]
+    },
+    {
+      "pageId": "policy-bundles",
+      "title": "Policy Bundles",
+      "path": "docs-site/pages/policy-bundles.md",
+      "featuresCovered": ["policy-bundle"]
+    },
+    {
+      "pageId": "registry-trust",
+      "title": "Registry Trust",
+      "path": "docs-site/pages/registry-trust.md",
+      "featuresCovered": ["registry", "registry-bundle"]
+    },
+    {
+      "pageId": "evidence-and-audit",
+      "title": "Evidence and Audit",
+      "path": "docs-site/pages/evidence-and-audit.md",
+      "featuresCovered": ["evidence-trace", "auditor-export", "incident-reports"]
+    },
+    {
+      "pageId": "redteam-and-benchmarks",
+      "title": "Red Team and Benchmarks",
+      "path": "docs-site/pages/redteam-and-benchmarks.md",
+      "featuresCovered": ["security-fuzz", "redteam-generator", "benchmark-corpus", "leaderboard-format", "attack-graph", "attack-graph-explainability"]
+    },
+    {
+      "pageId": "adapters",
+      "title": "Adapters",
+      "path": "docs-site/pages/adapters.md",
+      "featuresCovered": ["provider-adapter", "framework-adapter"]
+    },
+    {
+      "pageId": "multi-agent-security",
+      "title": "Multi-Agent Security",
+      "path": "docs-site/pages/multi-agent-security.md",
+      "featuresCovered": ["multi-agent-guard"]
+    },
+    {
+      "pageId": "enterprise-recipes",
+      "title": "Enterprise Recipes",
+      "path": "docs-site/pages/enterprise-recipes.md",
+      "featuresCovered": ["workspace-config", "enterprise-recipes", "ide-integration", "consumer-harness"]
+    },
+    {
+      "pageId": "release-candidate",
+      "title": "Release Candidate",
+      "path": "docs-site/pages/release-candidate.md",
+      "featuresCovered": ["release-candidate-gate"]
+    },
+    {
+      "pageId": "governance",
+      "title": "Governance",
+      "path": "docs-site/pages/governance.md",
+      "featuresCovered": ["governance"]
+    },
+    {
+      "pageId": "limitations",
+      "title": "Limitations",
+      "path": "docs-site/pages/limitations.md"
+    }
+  ],
+  "requiredSections": [
+    "overview",
+    "security-model",
+    "quick-evaluation",
+    "limitations",
+    "governance",
+    "release-candidate"
+  ],
+  "limitationsRequired": true,
+  "nonCertificationDisclaimerRequired": true
+}

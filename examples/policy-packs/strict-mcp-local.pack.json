@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "packId": "strict-mcp-local",
+  "name": "Strict MCP Local",
+  "description": "Safe local MCP default with readonly project reads, reviewed writes, and explicit dangerous denies.",
+  "policyVersion": 2,
+  "safetyLevel": "strict",
+  "compatibleWorkspaceProfiles": ["strict", "enterprise"],
+  "tags": ["mcp", "local", "strict"],
+  "rules": [
+    { "id": "deny-shell-exec", "description": "Deny shell execution.", "effect": "deny", "priority": 1000, "match": { "capability": "shell.exec" } },
+    { "id": "deny-code-execution", "description": "Deny direct code execution.", "effect": "deny", "priority": 990, "match": { "capability": "code_execution" } },
+    { "id": "deny-package-install", "description": "Deny package installation.", "effect": "deny", "priority": 950, "match": { "capability": "package.install" } },
+    { "id": "deny-filesystem-delete", "description": "Deny filesystem deletes.", "effect": "deny", "priority": 925, "match": { "capability": "filesystem.delete" } },
+    {
+      "id": "deny-secret-network-write",
+      "description": "Deny network writes with secret, credential, token, API key, password, or possible PII taint.",
+      "effect": "deny",
+      "priority": 920,
+      "match": {
+        "capabilitiesAny": ["network.write", "network.exfiltration_risk", "external_side_effect"],
+        "taintAny": ["secret", "credential", "token", "api_key", "password", "private_user_data", "pii_possible"]
+      }
+    },
+    { "id": "deny-critical-attack-graph", "description": "Deny critical attack graph findings.", "effect": "deny", "priority": 850, "match": { "riskSeverityAny": ["critical"] } },
+    {
+      "id": "review-project-write",
+      "description": "Review project filesystem writes.",
+      "effect": "require_human_review",
+      "priority": 700,
+      "match": { "capability": "filesystem.write" },
+      "requireApproval": { "reason": "project writes can modify local state" }
+    },
+    {
+      "id": "review-git-write",
+      "description": "Review git writes.",
+      "effect": "require_human_review",
+      "priority": 690,
+      "match": { "capability": "git.write" },
+      "requireApproval": { "reason": "git writes can publish or rewrite state" }
+    },
+    {
+      "id": "allow-readonly-project-files",
+      "description": "Allow readonly project file reads.",
+      "effect": "allow",
+      "priority": 100,
+      "match": {
+        "actionType": "tool_call",
+        "capability": "filesystem.read",
+        "resource": {
+          "type": "filesystem",
+          "allow": ["/mock/project/**"],
+          "deny": ["/mock/project/.env", "/mock/project/secrets/**"]
+        }
+      }
+    }
+  ],
+  "requiredChecks": {
+    "policyAudit": true,
+    "policyTest": true,
+    "adapterConformance": true,
+    "releaseCheck": true
+  },
+  "warnings": []
+}

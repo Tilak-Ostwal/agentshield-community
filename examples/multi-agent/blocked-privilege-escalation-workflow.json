@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "workflowId": "blocked-privilege-escalation-workflow",
+  "agents": [
+    {
+      "version": 1, "agentId": "planner-agent", "displayName": "Planner",
+      "role": "planner", "trustLevel": "untrusted",
+      "allowedCapabilities": ["document.read"], "deniedCapabilities": []
+    },
+    {
+      "version": 1, "agentId": "executor-agent", "displayName": "Executor",
+      "role": "executor", "trustLevel": "trusted",
+      "allowedCapabilities": ["process.exec"], "deniedCapabilities": []
+    }
+  ],
+  "policyRef": "multi-agent-policy.json",
+  "steps": [
+    {
+      "stepId": "s1", "agentId": "planner-agent", "delegateToAgentId": "executor-agent",
+      "toolName": "process.exec", "input": { "command": "echo hacked" }
+    }
+  ],
+  "expectedFinalDecision": "deny"
+}

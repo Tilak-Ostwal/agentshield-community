@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "ide": "vscode",
+  "workspaceConfigPath": "examples/workspace/agentshield.workspace.json",
+  "commands": {
+    "releaseCandidateCheck": "pnpm cli -- release-candidate check",
+    "securityFuzz": "pnpm cli -- security-fuzz",
+    "redteamCoverage": "pnpm cli -- redteam coverage",
+    "policyAudit": "pnpm cli -- policy-audit examples/policies/strict.policy.json",
+    "policyTest": "pnpm cli -- policy-test examples/policy-tests/strict.policy-test.json",
+    "recipeDoctor": "pnpm cli -- recipe doctor full-release-candidate",
+    "auditorExport": "pnpm cli -- auditor export --out auditor-evidence.json --force"
+  },
+  "diagnostics": {
+    "sarifEnabled": true,
+    "severityMapping": {
+      "critical": "error",
+      "high": "error",
+      "medium": "warning",
+      "low": "information",
+      "info": "hint"
+    }
+  },
+  "panel": {
+    "enabled": true,
+    "sections": [
+      "releaseCandidate",
+      "policy",
+      "registry",
+      "securityFuzz",
+      "redteam",
+      "incidents",
+      "auditorEvidence",
+      "limitations"
+    ]
+  }
+}

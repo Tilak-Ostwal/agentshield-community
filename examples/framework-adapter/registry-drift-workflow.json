@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "workflowId": "registry-drift-workflow",
+  "name": "Registry Drift Workflow",
+  "steps": [
+    {
+      "stepId": "drift",
+      "toolName": "unknown.tool",
+      "input": {}
+    }
+  ],
+  "expectedFinalDecision": "deny"
+}

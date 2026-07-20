@@ -1,0 +1,63 @@
+name: AgentShield Veritas
+description: Run AgentShield Bench in local CI mode.
+inputs:
+  profile:
+    description: Benchmark scoring profile: strict, balanced, audit, or dev.
+    required: false
+    default: strict
+  policy:
+    description: Optional safe relative path to an AgentShield policy file to validate before the benchmark.
+    required: false
+    default: ""
+  registry:
+    description: Optional safe relative path to a local AgentShield tool registry.
+    required: false
+    default: ""
+  sarif:
+    description: Optional safe relative path for SARIF output.
+    required: false
+    default: ""
+  evidence:
+    description: Optional safe relative path for tamper-evident evidence output.
+    required: false
+    default: ""
+  markdown:
+    description: Optional safe relative path for Markdown benchmark report output.
+    required: false
+    default: ""
+  fail-on-critical:
+    description: Whether critical benchmark failures fail the job.
+    required: false
+    default: "true"
+  minimum-score:
+    description: Minimum weighted score percentage required to pass.
+    required: false
+    default: "100"
+runs:
+  using: composite
+  steps:
+    - name: AgentShield dry run
+      shell: bash
+      run: |
+        node packages/cli/dist/index.js action dry-run \
+          --profile "${{ inputs.profile }}" \
+          --policy "${{ inputs.policy }}" \
+          --registry "${{ inputs.registry }}" \
+          --sarif "${{ inputs.sarif }}" \
+          --evidence "${{ inputs.evidence }}" \
+          --markdown "${{ inputs.markdown }}" \
+          --fail-on-critical "${{ inputs.fail-on-critical }}" \
+          --minimum-score "${{ inputs.minimum-score }}"
+    - name: AgentShield policy check
+      if: ${{ inputs.policy != '' }}
+      shell: bash
+      run: node packages/cli/dist/index.js check "${{ inputs.policy }}"
+    - name: AgentShield bench
+      shell: bash
+      run: |
+        args=(bench --ci --profile "${{ inputs.profile }}" --fail-on-critical "${{ inputs.fail-on-critical }}" --minimum-score "${{ inputs.minimum-score }}")
+        if [ -n "${{ inputs.registry }}" ]; then args+=(--registry "${{ inputs.registry }}"); fi
+        if [ -n "${{ inputs.sarif }}" ]; then args+=(--sarif "${{ inputs.sarif }}"); fi
+        if [ -n "${{ inputs.evidence }}" ]; then args+=(--evidence "${{ inputs.evidence }}"); fi
+        if [ -n "${{ inputs.markdown }}" ]; then args+=(--format markdown --out "${{ inputs.markdown }}"); fi
+        node packages/cli/dist/index.js "${args[@]}"

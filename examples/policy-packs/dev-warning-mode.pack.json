@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "packId": "dev-warning-mode",
+  "name": "Dev Warning Mode",
+  "description": "A permissive policy pack for local development only.",
+  "policyVersion": 2,
+  "safetyLevel": "dev",
+  "compatibleWorkspaceProfiles": ["dev"],
+  "tags": ["dev", "warning", "local"],
+  "defaultEffect": "deny",
+  "rules": [
+    {
+      "id": "warn-all",
+      "description": "Warn on everything in dev mode",
+      "effect": "allow",
+      "match": {
+        "resource": "*"
+      },
+      "riskNotes": ["This is unsafe for production"],
+      "attackGraphPatternAny": []
+    }
+  ],
+  "requiredChecks": {
+    "schemaValidation": true,
+    "policyAudit": true,
+    "policyTest": true,
+    "reviewRecord": true,
+    "bundleRecommended": false
+  },
+  "warnings": ["For local development only."],
+  "compatiblePolicyVersions": [2],
+  "dependencies": {},
+  "limitations": ["Not for production."]
+}

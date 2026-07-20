@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "submissionId": "agentshield-public-evaluation-v1",
+  "resultPath": "sample-benchmark-result.json",
+  "leaderboardEntryPath": "sample-leaderboard-entry.json",
+  "requiredArtifacts": [
+    "auditor-evidence.json",
+    "release-candidate-report.md"
+  ],
+  "reproducibility": {
+    "commands": [
+      "pnpm build",
+      "pnpm test",
+      "pnpm cli -- bench --ci",
+      "pnpm cli -- redteam coverage",
+      "pnpm cli -- security-fuzz",
+      "pnpm cli -- release-candidate check"
+    ],
+    "networkRequired": false,
+    "cloudRequired": false
+  }
+}

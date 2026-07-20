@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "workflowId": "safe-planner-executor-workflow",
+  "agents": [
+    {
+      "version": 1, "agentId": "planner-agent", "displayName": "Planner",
+      "role": "planner", "trustLevel": "untrusted",
+      "allowedCapabilities": ["document.read"], "deniedCapabilities": []
+    },
+    {
+      "version": 1, "agentId": "executor-agent", "displayName": "Executor",
+      "role": "executor", "trustLevel": "trusted",
+      "allowedCapabilities": ["filesystem.read"], "deniedCapabilities": []
+    }
+  ],
+  "policyRef": "multi-agent-policy.json",
+  "steps": [
+    {
+      "stepId": "s1", "agentId": "planner-agent", "toolName": "document.read",
+      "input": { "path": "instructions.md" }
+    },
+    {
+      "stepId": "s2", "agentId": "planner-agent", "delegateToAgentId": "executor-agent",
+      "toolName": "filesystem.read", "input": { "path": "safe.txt" }
+    }
+  ],
+  "expectedFinalDecision": "allow"
+}

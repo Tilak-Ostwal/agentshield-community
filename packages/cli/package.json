@@ -1,0 +1,33 @@
+{
+  "name": "@agentshield/cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "agentshield": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "cli": "node dist/index.js"
+  },
+  "dependencies": {
+    "@agentshield/bench": "workspace:*",
+    "@agentshield/core": "workspace:*",
+    "@agentshield/demo-agent": "workspace:*",
+    "@agentshield/mcp-adapter": "workspace:*",
+    "@agentshield/registry": "workspace:*",
+    "@agentshield/sdk": "workspace:*"
+  }
+}

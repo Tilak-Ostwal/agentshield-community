@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "data": {
+    "config": {
+      "api_key": "[REDACTED:api_key]"
+    }
+  },
+  "msg": "Found some sk-test-REDACT-ME wait no"
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "incidentId": "incident-123",
+  "createdAt": "2026-06-29T00:00:00.000Z",
+  "title": "Incident: unknown",
+  "severity": "info",
+  "status": "blocked",
+  "category": "unknown",
+  "summary": "Runtime incident detected and analyzed.",
+  "finalDecision": "deny",
+  "affectedTools": [
+    "network.post"
+  ],
+  "timeline": [
+    {
+      "step": 1,
+      "timestamp": "2026-06-29T00:00:00.000Z",
+      "eventType": "action_received",
+      "summary": "Agent attempted a tool call."
+    }
+  ],
+  "remediation": [
+    {
+      "priority": "medium",
+      "title": "Review Agent Actions",
+      "details": "Check recent actions to ensure they conform to expected boundaries."
+    }
+  ],
+  "limitations": [
+    "Local deterministic incident report only; not a legal compliance certification."
+  ],
+  "incidentHash": "043612372ca50ebdf7fe8c2ca531b88f1ecc2aa96e056824c623e7f3264a8d5b"
+}

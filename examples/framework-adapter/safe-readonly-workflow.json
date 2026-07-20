@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "workflowId": "safe-readonly-workflow",
+  "name": "Safe Readonly Workflow",
+  "steps": [
+    {
+      "stepId": "read-doc",
+      "toolName": "document.read",
+      "input": { "path": "/mock/project/README.md" }
+    }
+  ]
+}

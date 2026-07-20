@@ -1,0 +1,12 @@
+{
+  "events": [
+    {
+      "step": 1,
+      "timestamp": "2026-06-29T00:00:00.000Z",
+      "eventType": "action_received",
+      "summary": "Agent attempted a tool call.",
+      "toolName": "network.post",
+      "decision": "deny"
+    }
+  ]
+}

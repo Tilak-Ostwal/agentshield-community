@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "evaluationId": "agentshield-public-evaluation-v1",
+  "name": "AgentShield Public Local Evaluation Pack",
+  "description": "A deterministic local evaluation workflow for AgentShield security capabilities.",
+  "consumerProjectPath": "examples/consumer-project/agentshield.consumer.json",
+  "checks": [
+    {
+      "checkId": "consumer-workspace-validate",
+      "name": "Consumer Workspace Validation",
+      "command": "pnpm cli -- consumer validate examples/consumer-project/agentshield.consumer.json",
+      "required": true,
+      "evidence": ["consumer validation report"]
+    }
+  ],
+  "scoring": {
+    "maxScore": 100,
+    "minimumPassingScore": 90,
+    "criticalFailureFailsEvaluation": true
+  },
+  "limitations": [
+    "Local deterministic evaluation only.",
+    "No legal compliance certification.",
+    "No cloud attestation."
+  ]
+}

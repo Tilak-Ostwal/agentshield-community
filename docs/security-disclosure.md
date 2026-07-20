@@ -1,0 +1,2 @@
+# Security Disclosure
+how to report vulnerabilities, what to include in reports, safe testing rules, no public exploit dumping before coordination, local-only reproduction preference, disclosure triage severity model, response expectations without promising exact legal SLAs

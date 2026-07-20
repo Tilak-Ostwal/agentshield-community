@@ -1,0 +1,8 @@
+{
+  "type": "tool_use",
+  "id": "toolu_001",
+  "name": "filesystem.read",
+  "input": {
+    "path": "/mock/project/README.md"
+  }
+}

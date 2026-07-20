@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "entryId": "agentshield-veritas-v0.2.0-beta-local",
+  "projectName": "AgentShield Veritas",
+  "projectVersion": "0.2.0-beta",
+  "resultPath": "sample-benchmark-result.json",
+  "score": 100,
+  "grade": "pass",
+  "corpusVersion": "v3",
+  "verified": true,
+  "verificationSummary": "Result hash and required benchmark fields verified locally.",
+  "limitations": []
+}

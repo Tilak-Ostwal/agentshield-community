@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "name": "agentshield-example-workspace",
+  "profile": "strict",
+  "policyPack": "strict-mcp-local",
+  "policyPath": "examples/policies/strict.policy.json",
+  "registryPath": "examples/registry/agentshield.registry.json",
+  "sandbox": {
+    "enabled": true,
+    "defaultProfile": "locked-down"
+  },
+  "approval": {
+    "enabled": true
+  },
+  "evidence": {
+    "enabled": true,
+    "redactionRequired": true
+  },
+  "bench": {
+    "profile": "strict",
+    "minimumScore": 100,
+    "failOnCritical": true
+  },
+  "ci": {
+    "sarif": true,
+    "markdown": true
+  },
+  "adapters": {
+    "mcp": true,
+    "custom": true,
+    "conformanceRequired": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "project": "my-app",
+  "config": {
+    "api_key": "sk-test-REDACT-ME",
+    "db": "postgres://user:pass@localhost:5432/db",
+    "bearer": "Bearer abcdef12345"
+  },
+  "user": {
+    "email": "test@example.com",
+    "phone": "+1234567890"
+  },
+  "auth": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  },
+  "files": [
+    "/home/user/.env",
+    "/root/.npmrc"
+  ]
+}

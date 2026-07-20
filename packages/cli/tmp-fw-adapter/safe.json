@@ -1,0 +1,1 @@
+{"version":1,"workflowId":"w1","name":"safe","steps":[{"stepId":"s1","toolName":"filesystem.read"}]}

@@ -1,0 +1,8 @@
+{
+  "functionCall": {
+    "name": "filesystem.read",
+    "args": {
+      "path": "/mock/project/README.md"
+    }
+  }
+}

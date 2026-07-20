@@ -1,0 +1,8 @@
+{
+  "id": "call_001",
+  "type": "function",
+  "function": {
+    "name": "filesystem.read",
+    "arguments": "{\"path\":\"/mock/project/README.md\"}"
+  }
+}

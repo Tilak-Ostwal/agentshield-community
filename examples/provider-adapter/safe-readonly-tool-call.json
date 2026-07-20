@@ -1,0 +1,6 @@
+{
+  "toolName": "filesystem.read",
+  "input": {
+    "path": "/mock/project/README.md"
+  }
+}

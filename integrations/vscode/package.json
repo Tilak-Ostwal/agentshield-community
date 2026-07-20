@@ -1,0 +1,21 @@
+{
+  "name": "agentshield-vscode",
+  "version": "0.2.0-prototype",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "agentshield.showSecurityPanel",
+        "title": "AgentShield: Show Security Panel"
+      },
+      {
+        "command": "agentshield.runReleaseCandidateCheck",
+        "title": "AgentShield: Release Candidate Check"
+      }
+    ]
+  }
+}

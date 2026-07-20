@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "workflowId": "approval-required-workflow",
+  "name": "Approval Required Workflow",
+  "steps": [
+    {
+      "stepId": "execute-command",
+      "toolName": "system.exec",
+      "input": { "command": "echo 'approve me'" }
+    }
+  ],
+  "expectedFinalDecision": "review"
+}

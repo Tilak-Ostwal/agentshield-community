@@ -1,0 +1,95 @@
+{
+  "version": 2,
+  "name": "strict-local-agent-policy",
+  "defaultDecision": "deny",
+  "mode": "strict",
+  "rules": [
+    {
+      "id": "deny-shell-exec",
+      "description": "Never allow shell execution in the local prototype.",
+      "effect": "deny",
+      "priority": 1000,
+      "match": {
+        "capability": "shell.exec"
+      }
+    },
+    {
+      "id": "deny-package-install",
+      "description": "Package installation is code execution risk.",
+      "effect": "deny",
+      "priority": 950,
+      "match": {
+        "capability": "package.install"
+      }
+    },
+    {
+      "id": "deny-filesystem-delete",
+      "description": "Filesystem deletes can remove project state.",
+      "effect": "deny",
+      "priority": 925,
+      "match": {
+        "capability": "filesystem.delete"
+      }
+    },
+    {
+      "id": "deny-secret-network-write",
+      "description": "Deny network writes when secrets or credentials are tainted.",
+      "effect": "deny",
+      "priority": 900,
+      "match": {
+        "capabilitiesAny": ["network.write"],
+        "taintAny": ["secret", "credential"]
+      }
+    },
+    {
+      "id": "deny-critical-attack-graph",
+      "description": "Critical attack graph findings cannot proceed.",
+      "effect": "deny",
+      "priority": 850,
+      "match": {
+        "riskSeverityAny": ["critical"]
+      }
+    },
+    {
+      "id": "review-filesystem-write",
+      "description": "Local writes require a person to review intent.",
+      "effect": "require_human_review",
+      "priority": 700,
+      "match": {
+        "capability": "filesystem.write"
+      },
+      "requireApproval": {
+        "reason": "filesystem writes can modify project state",
+        "approverHint": "Review the target path and content summary."
+      }
+    },
+    {
+      "id": "review-git-write",
+      "description": "Git writes can publish or rewrite state.",
+      "effect": "require_human_review",
+      "priority": 700,
+      "match": {
+        "capability": "git.write"
+      },
+      "requireApproval": {
+        "reason": "git writes require human confirmation",
+        "approverHint": "Check branch, remote, and diff before approval."
+      }
+    },
+    {
+      "id": "allow-readonly-project-files",
+      "description": "Allow readonly access to safe project files.",
+      "effect": "allow",
+      "priority": 100,
+      "match": {
+        "actionType": "tool_call",
+        "capability": "filesystem.read",
+        "resource": {
+          "type": "filesystem",
+          "allow": ["/mock/project/**"],
+          "deny": ["/mock/project/.env", "/mock/project/secrets/**"]
+        }
+      }
+    }
+  ]
+}

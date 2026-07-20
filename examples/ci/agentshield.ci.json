@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "profile": "strict",
+  "failOnCritical": true,
+  "failOnHigh": false,
+  "minimumScorePercentage": 100,
+  "requireEvidence": false,
+  "sarifOutput": "agentshield.sarif.json",
+  "evidenceOutput": "ci-evidence.json",
+  "markdownOutput": "ci-report.md"
+}

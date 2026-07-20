@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "name": "Migrated Policy",
+  "mode": "strict",
+  "defaultDecision": "deny",
+  "rules": [
+    {
+      "id": "legacy-rule-1",
+      "priority": 1000,
+      "match": {
+        "actionType": "tool_call",
+        "toolName": "fs.readFile"
+      },
+      "effect": "allow"
+    },
+    {
+      "id": "legacy-rule-2",
+      "priority": 990,
+      "match": {
+        "actionType": "tool_call"
+      },
+      "effect": "require_human_review",
+      "requireApproval": {
+        "reason": "Migrated from Policy v1 require_human_review"
+      }
+    }
+  ]
+}

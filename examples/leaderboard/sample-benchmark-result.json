@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "resultId": "agentshield-local-benchmark-result",
+  "createdAt": "2026-07-17T12:47:30.064Z",
+  "project": {
+    "name": "AgentShield Veritas",
+    "version": "0.2.0-beta",
+    "environment": "local"
+  },
+  "corpus": {
+    "corpusVersion": "v3",
+    "scenarioCount": 100,
+    "categories": [],
+    "corpusHash": "5ce238f98b7ba4e9ad4c9d6705902bf18a379b3c15c1973b399a05ca944c3f50"
+  },
+  "run": {
+    "profile": "strict",
+    "totalScenarios": 100,
+    "passed": 100,
+    "failed": 0,
+    "weightedScore": 100,
+    "normalizedScore": 100,
+    "criticalFailures": 0,
+    "highFailures": 0
+  },
+  "checks": {
+    "benchCi": true,
+    "redteamCoverage": true,
+    "securityFuzz": true,
+    "releaseCandidateCheck": true
+  },
+  "limitations": [
+    "Local deterministic benchmark result only.",
+    "Not an official legal/compliance certification."
+  ],
+  "resultHash": "1cc32b2259fe99c0520381d4ca393be9358d746891dde58df7901caddf68388b"
+}

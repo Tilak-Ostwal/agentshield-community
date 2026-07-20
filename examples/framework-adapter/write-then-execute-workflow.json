@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "workflowId": "write-then-execute-workflow",
+  "name": "Write then Execute Workflow",
+  "steps": [
+    {
+      "stepId": "write-file",
+      "toolName": "filesystem.write",
+      "input": { "path": "script.sh", "content": "echo 'hello'" }
+    },
+    {
+      "stepId": "run-script",
+      "toolName": "system.exec",
+      "input": { "command": "bash script.sh" }
+    }
+  ],
+  "expectedFinalDecision": "review"
+}

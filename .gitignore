@@ -1,0 +1,50 @@
+node_modules/
+dist/
+coverage/
+.vscode/
+.idea/
+.env
+.DS_Store
+
+# Logs and temporary files
+*.log
+*.tmp
+*.cache
+
+# Generated build and lint logs from development sessions
+build_results*.txt
+lint_output*.txt
+lint_output_orig.txt
+lint_results*.txt
+sc.log
+bench_files.txt
+
+# Generated report artifacts from local CLI runs
+consumer-evaluation-report.md
+governance-report.md
+generated-vscode-tasks.json
+demo-report.html
+marketplace-install-plan.md
+v1-readiness-report.md
+release-candidate-report.md
+public-rc-report.md
+adapter-conformance-report.md
+ci-report.md
+bench-report.*
+policy-test-snapshot.json
+
+# Generated output files from CLI --out flags
+generated.policy.json
+generated-pack.policy.json
+generated-redteam*.json
+generated.bundle.json
+agentshield.sarif.json
+agentshield-evidence.json
+bench-evidence.json
+demo-evidence.json
+proxy-evidence.json
+auditor-evidence.*
+migrated.policy.json
+
+# TypeScript build info
+*.tsbuildinfo

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "workflowId": "sensitive-context-handoff-workflow",
+  "agents": [
+    {
+      "version": 1, "agentId": "planner-agent", "displayName": "Planner",
+      "role": "planner", "trustLevel": "untrusted",
+      "allowedCapabilities": ["filesystem.read"], "deniedCapabilities": []
+    },
+    {
+      "version": 1, "agentId": "reviewer-agent", "displayName": "Reviewer",
+      "role": "reviewer", "trustLevel": "trusted",
+      "allowedCapabilities": ["document.read"], "deniedCapabilities": []
+    }
+  ],
+  "policyRef": "multi-agent-policy.json",
+  "steps": [
+    {
+      "stepId": "s1", "agentId": "planner-agent", "toolName": "filesystem.read",
+      "input": { "path": ".env" }
+    },
+    {
+      "stepId": "s2", "agentId": "planner-agent", "delegateToAgentId": "reviewer-agent",
+      "toolName": "document.read", "input": { "path": "review.md" }
+    }
+  ],
+  "expectedFinalDecision": "deny"
+}

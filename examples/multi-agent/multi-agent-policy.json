@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "policyId": "strict-multi-agent-policy",
+  "rules": [
+    {
+      "ruleId": "planner-cannot-execute",
+      "effect": "deny",
+      "fromRole": "planner",
+      "toRole": "executor",
+      "capabilitiesAny": ["process.exec", "network.write"],
+      "reason": "Planner-originated untrusted context cannot delegate execution or network writes without review."
+    },
+    {
+      "ruleId": "planner-can-read",
+      "effect": "allow",
+      "fromRole": "planner",
+      "toRole": "executor",
+      "capabilitiesAny": ["filesystem.read"]
+    }
+  ],
+  "defaults": {
+    "unknownAgent": "deny",
+    "unknownDelegation": "deny",
+    "crossTrustBoundary": "review",
+    "sensitiveContextHandoff": "review"
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "version": 1,
+    "fixtureId": "malformed-action-missing-tool-name",
+    "category": "malformed_action",
+    "severity": "critical",
+    "description": "Action envelope missing toolName must fail closed.",
+    "input": {},
+    "expected": {
+      "decision": "deny",
+      "mustFailClosed": true,
+      "mustNotForward": true,
+      "mustNotLeakSecret": true
+    }
+  }
+]

@@ -1,0 +1,1 @@
+{"version":1,"workflowId":"w2","name":"blocked","steps":[{"stepId":"s1","toolName":"filesystem.read","input":{"path":".env"}},{"stepId":"s2","toolName":"network.post"}]}

@@ -1,0 +1,21 @@
+[
+  {
+    "version": 1,
+    "toolId": "filesystem.read",
+    "name": "filesystem.read",
+    "description": "Read a mock project file.",
+    "capabilities": ["filesystem.read"],
+    "sideEffects": ["read"],
+    "inputSchema": { "type": "object" },
+    "metadata": { "framework": "generic", "source": "local-fixture" }
+  },
+  {
+    "version": 1,
+    "toolId": "network.post",
+    "name": "network.post",
+    "description": "Send a POST request.",
+    "capabilities": ["network.write"],
+    "sideEffects": ["write", "network"],
+    "inputSchema": { "type": "object" }
+  }
+]

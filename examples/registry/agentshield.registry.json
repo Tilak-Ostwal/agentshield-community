@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "name": "local-agent-tool-registry",
+  "generatedAt": "2026-06-26T00:00:00.000Z",
+  "entries": [
+    {
+      "version": 1,
+      "toolName": "filesystem.read",
+      "serverName": "mock-mcp-server",
+      "trustLevel": "trusted",
+      "expectedFingerprint": {
+        "schemaHash": "923b083c9bcab2e3d3e07c7d9b4401688ad9f3d5e2c2f0c48fcd43052bdcb71b",
+        "descriptionHash": "4b2a1ed61197c06c874fd5f4697a850ead925721f9a0ec9a4ef04dc07360649a",
+        "capabilityHash": "66057f8912c179f32e2fafb5e8817aec6cb8970f70b7e6228fc5898f9221bac1"
+      },
+      "declaredCapabilities": ["filesystem.read"],
+      "allowedResourceScopes": [
+        { "type": "filesystem", "allow": ["/mock/project/**"] }
+      ],
+      "riskLevel": "low",
+      "reviewedAt": "2026-06-26T00:00:00.000Z",
+      "reviewedBy": "agentshield"
+    },
+    {
+      "version": 1,
+      "toolName": "filesystem.write",
+      "serverName": "mock-mcp-server",
+      "trustLevel": "reviewed",
+      "expectedFingerprint": {
+        "schemaHash": "3f4ea9aef3ff7c58f773a492498a98ea9200ac0ca575dcabae7f7c5bfe0f472a",
+        "descriptionHash": "2c2d29b306cdf7257cd3f9d35f5bd83bf925af319eeebd38dbf0cb2b032f397a",
+        "capabilityHash": "5d290ccdea5559c126600f00056db667d249abb7fbf2ea6c5b6e856fb5ec5758"
+      },
+      "declaredCapabilities": ["filesystem.write"],
+      "riskLevel": "medium",
+      "reviewedAt": "2026-06-26T00:00:00.000Z",
+      "reviewedBy": "agentshield"
+    },
+    {
+      "version": 1,
+      "toolName": "shell.exec",
+      "serverName": "mock-mcp-server",
+      "trustLevel": "blocked",
+      "expectedFingerprint": {
+        "schemaHash": "ffc92bf1fd9a82c838c2f9e962c98c8ee58ecf35dd6e5cd3057095dc15032e17",
+        "descriptionHash": "c2bcada386ae9abb55bf94b2cd73a3a062f2bf8335bb40efa76371d2219ba794",
+        "capabilityHash": "65794d6714ab5650f721892eeba4dae6bf96ba84e5faa3c12b0899ca762d77b6"
+      },
+      "declaredCapabilities": ["shell.exec", "code_execution"],
+      "riskLevel": "critical",
+      "notes": "Blocked in the sample registry. The mock tool never executes a shell."
+    },
+    {
+      "version": 1,
+      "toolName": "network.post",
+      "serverName": "mock-mcp-server",
+      "trustLevel": "reviewed",
+      "expectedFingerprint": {
+        "schemaHash": "1a546bc972db2ae2a906ec1d4954679fc9a9d36b8237f8f7f90c50a19a3d2da4",
+        "descriptionHash": "55fe87986b1639785dd57a3062335a91c523c35e9be68f3227bdce6a760dbaf3",
+        "capabilityHash": "f743e2ab9f4ff9d80afcf59ce859755ba18b09e832ab07b608e086d2aa620c25"
+      },
+      "declaredCapabilities": ["network.write", "network.exfiltration_risk", "external_side_effect"],
+      "allowedResourceScopes": [
+        { "type": "network", "allow": ["https://example.invalid/**"] }
+      ],
+      "riskLevel": "high",
+      "reviewedAt": "2026-06-26T00:00:00.000Z",
+      "reviewedBy": "agentshield"
+    }
+  ]
+}
